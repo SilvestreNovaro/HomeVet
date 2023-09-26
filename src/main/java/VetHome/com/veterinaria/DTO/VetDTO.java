@@ -8,9 +8,6 @@ import lombok.Setter;
 @Setter
 public class VetDTO {
 
-
-
-
     private String name;
 
     private String surname;

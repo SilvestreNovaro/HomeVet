@@ -37,20 +37,5 @@ public class Pet {
     private String petSpecies;
 
 
-    /*@OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pet_id")
-    private List<MedicalRecord> medicalRecords = new ArrayList<>();
-
-
-    @ManyToMany(cascade = CascadeType.DETACH)
-    @JoinTable(
-            name = "pet_vaccine",
-            joinColumns = @JoinColumn(name = "pet_id"),
-            inverseJoinColumns = @JoinColumn(name = "vaccine_id")
-    )
-    private List<Vaccine> vaccines = new ArrayList<>();
-
-     */
-
 }
 

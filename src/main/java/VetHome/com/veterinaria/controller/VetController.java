@@ -67,7 +67,6 @@ public class VetController {
 
     @GetMapping("/getOccupiedTime/{id}")
     public ResponseEntity<Object> vetsOcuppied(@PathVariable Long id){
-        //List<LocalDateTime> localDateTimes = vetService.getOccupiedTimeSlotsForVet(id);
         return ResponseEntity.ok(vetService.getOccupiedTimeSlotsForVet(id));
     }
 
@@ -82,8 +81,6 @@ public class VetController {
         vetService.createVetWithAvailabilitySlots(availabilitySlots, id);
         return ResponseEntity.status(HttpStatus.CREATED).body("Working calendar added successfully to Vet: " + id);
     }
-
-
 
 
     @PatchMapping("/update/{id}")
