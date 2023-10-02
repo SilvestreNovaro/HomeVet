@@ -44,6 +44,6 @@ public class Vet {
             joinColumns = @JoinColumn(name = "vet_id"),
             inverseJoinColumns = @JoinColumn(name = "availability_slot_id")
     )
-    private List<AvailabilitySlot> availabilitySlots = new ArrayList<>();;
+    private List<AvailabilitySlot> availabilitySlots = new ArrayList<>();
 
 }

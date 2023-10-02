@@ -32,13 +32,13 @@ public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
 
     private final VetService vetService;
+
     private final CustomerService customerService;
 
     private final PetService petService;
 
     @Autowired
     private JavaMailSender javaMailSender;
-
 
     private final MailService mailService;
 
@@ -133,9 +133,7 @@ public class AppointmentService {
                     .orElseThrow(() -> new NotFoundException("Pet not found for the customer"));
             petsToAdd.add(pet);
         }
-        if(petsToAdd.isEmpty()){
-            throw new NotFoundException("Pet not found on our database");
-        }else{
+        if(!petsToAdd.isEmpty()) {
             appointment.setPets(petsToAdd);
         }
         appointment.setAppointmentDateTime(appointmentDTO.getAppointmentDateTime() != null && !appointmentDTO.getAppointmentDateTime().toString().isEmpty() ? appointmentDTO.getAppointmentDateTime() : appointment.getAppointmentDateTime());
@@ -146,7 +144,6 @@ public class AppointmentService {
         appointment.setCustomer(customer);
         appointmentRepository.save(appointment);
 }
-
 
     //Funciona.
     public void updateAppointment(Long appointmentId, Appointment appointment1) {
