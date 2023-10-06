@@ -6,6 +6,7 @@ import VetHome.com.veterinaria.DTO.CustomerDTO;
 import VetHome.com.veterinaria.entity.Customer;
 import VetHome.com.veterinaria.entity.Pet;
 import VetHome.com.veterinaria.service.CustomerService;
+import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,7 +63,7 @@ public class CustomerController {
 
 
     @PostMapping("/addCustomer")
-    public ResponseEntity<String> addCustomer(@Validated @RequestBody CustomerDTO customerDTO) {
+    public ResponseEntity<String> addCustomer(@Validated @RequestBody CustomerDTO customerDTO) throws MessagingException {
         customerService.createCustomer(customerDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body("Customer added successfully");
     }
@@ -83,7 +84,7 @@ public class CustomerController {
 
     @GetMapping("/findCustomerByLastNameAndAddress")
     public ResponseEntity<Object> findByLastNameAndAddress(@RequestParam String lastName, @RequestParam String address){
-        Customer customer = customerService.findByLastNameAndAnddress(lastName, address);
+        Customer customer = customerService.findByLastNameAndAddress(lastName, address);
         return ResponseEntity.ok(customer);
     }
 

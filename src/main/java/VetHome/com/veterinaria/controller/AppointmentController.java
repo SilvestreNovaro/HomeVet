@@ -2,24 +2,19 @@ package VetHome.com.veterinaria.controller;
 
 
 import VetHome.com.veterinaria.DTO.AppointmentDTO;
-import VetHome.com.veterinaria.convert.UtilityService;
 import VetHome.com.veterinaria.entity.Appointment;
 import VetHome.com.veterinaria.entity.Customer;
-import VetHome.com.veterinaria.entity.Vet;
 import VetHome.com.veterinaria.service.AppointmentService;
-import VetHome.com.veterinaria.service.CustomerService;
-import VetHome.com.veterinaria.service.PetService;
-import VetHome.com.veterinaria.service.VetService;
 import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,16 +27,6 @@ public class AppointmentController {
 
 
     private final AppointmentService appointmentService;
-
-    private final CustomerService customerService;
-
-    private final VetService vetService;
-
-    private final PetService petService;
-
-    private JavaMailSender javaMailSender;
-
-    private final UtilityService utilityService;
 
     // GET MAPPING
 
@@ -156,7 +141,7 @@ public class AppointmentController {
   @PatchMapping("/updateApp/{id}")
     public ResponseEntity<String> update(@RequestBody AppointmentDTO appointmentDTO, @PathVariable Long id) {
         appointmentService.updateAppointment(appointmentDTO, id);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Appointment updated succesfully!!");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Appointment updated successfully!!");
     }
 
 
@@ -165,7 +150,7 @@ public class AppointmentController {
     @PatchMapping ("/update/{id}")
     public ResponseEntity<String> updateAppointment(@Validated @RequestBody Appointment appointmentDTO, @PathVariable Long id) {
             appointmentService.updateAppointment(id, appointmentDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Appointment updated succesfully!!");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Appointment updated successfully!!");
     }
 
 
@@ -182,15 +167,15 @@ public class AppointmentController {
     @DeleteMapping("/deleteByIds")
     public ResponseEntity<Object> deleteAppointmentsByIds(@RequestParam List <Long> appointmentIds) {
         appointmentService.deleteAppointment(appointmentIds);
-        return ResponseEntity.ok("appointents deleted succesfully " + appointmentIds.toString());
+        return ResponseEntity.ok("appointments deleted successfully " + appointmentIds.toString());
     }
 
 
-    // ALSO DELETES MANY APPOINTEMTS
+    // ALSO DELETES MANY APPOINTMENTS
     @DeleteMapping("/deleteAppointmentByIds2")
-    public ResponseEntity<?> deleteAppointmentsByIds(@RequestParam  Long[] appointmentIds) {
+    public ResponseEntity<String> deleteAppointmentsByIds(@RequestParam  Long[] appointmentIds) {
         appointmentService.deleteAppointmentsByIds(appointmentIds);
-        return ResponseEntity.ok("appointents deleted succesfully " + appointmentIds.toString());
+        return ResponseEntity.ok("appointments deleted successfully " + Arrays.toString(appointmentIds));
     }
 
 
