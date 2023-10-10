@@ -60,7 +60,7 @@ public class CustomerService {
         Customer customer = utilityService.convertCustomerDTOtoCustomerCreate(customerDTO);
         String encodedPassword = this.passwordEncoder.encode(customerDTO.getPassword());
         customer.setPassword(encodedPassword);
-        Role role = roleService.findById(3L).orElseThrow(() -> new NotFoundException(NOT_FOUND_ROLE));
+        Role role = roleService.findById(1L).orElseThrow(() -> new NotFoundException(NOT_FOUND_ROLE));
         customer.setRole(role);
         sendRegistrationEmail(customer);
         customerRepository.save(customer);
